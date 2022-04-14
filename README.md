@@ -19,3 +19,5 @@
 - Exceute `pip install -r requirements.txt`.
 - run `python manage.py runserver`.
 - Go to `127.0.0.1::8000` in your web browser.
+
+View the website on [MEDIWISE](http://rivocold.herokuapp.com/)
