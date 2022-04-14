@@ -1,0 +1,346 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block contentTitle %}
+    <style>
+    h1 {
+    text-indent: 14px;
+    }
+
+    </style>
+    <h1 class="p-1 mb-3 ml-0 mr-0 bg-dark text-white " > Dashboard</h1>
+{% endblock contentTitle %}
+
+{% block content %}
+    <div class="container-fluid">
+        <!-- Content Row -->
+        <div class="row">
+            <!-- Recover Card -->
+            <div class="col-xl-4 col-md-6 col-sm-12 mb-4">
+                <div class="card border-left-success bg-white shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                    Recovered</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ recovered_count }}</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-heart fa-2x text-success"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- admitted card -->
+            <div class="col-xl-4 col-md-6 col-sm-12 mb-4">
+                <div class="card border-left-info bg-white shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                    Admitted</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ patient_count }}</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-stethoscope fa-2x text-info"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- dead Card  -->
+            <div class="col-xl-4 col-md-6 col-sm-12 mb-4">
+                <div class="card border-left-danger bg-white shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Deceased
+                                </div>
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col-auto">
+                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{deceased_count}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-book-dead fa-2x text-danger"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pending Requests Card -->
+            <div class="col-xl-4 col-md-6 col-sm-12 mb-4">
+                <div class="card border-left-warning bg-white shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                    Pending Requests</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">20</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-comments fa-2x text-warning"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- bed availability -->
+            <div class="col-xl-4 col-md-6 col-sm-12 mb-4">
+                <div class="card border-left-primary bg-white shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-blue text-uppercase mb-1">
+                                    Bed availability</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{beds_available}}</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-bed fa-2x text-blue"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-md-6 col-sm-12 mb-4">
+                <div class="card border-left-secondary bg-white  shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-blue text-uppercase mb-1">
+                                    ventilator availability</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">160</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-ambulance fa-2x text-blue"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div><h3 class="font-weight-bold my-3">Beds Availability</h3></div>
+        <div class="row">
+            <!-- .bg-success.grid-box.my-2.mx-2  -->
+            {% comment %} <div class="bg-success grid-box my-2 mx-2 py-3 px-3"> {% endcomment %}
+            {% comment %} </div> {% endcomment %}
+
+            {% for bed in beds %}
+                <style>
+                    .bg-red{
+                    background-color: red;
+                    }
+                    .bg-green{
+                        background-color: green;
+                    }
+                </style>
+
+                <div class="
+                
+                
+                {% if bed.occupied == True %}
+                bg-red border
+                {% elif bed.occupied == False %}
+                bg-green border
+                {% endif %}
+                
+                
+                grid-box border border-dark my-2 mx-2 py-3 px-3 font-weight-bold text-white">{{ bed }}</div>
+            {% endfor %}
+            
+        </div>
+    </div>
+<style>
+    .rotating-card-container {
+  -o-perspective: 800px;
+  -ms-perspective: 800px;
+  perspective: 800px; }
+  .rotating-card-container .card-rotate {
+    background: transparent;
+    box-shadow: none; }
+    .rotating-card-container .card-rotate:after {
+      display: none; }
+  .rotating-card-container .card {
+    transition: all 0.8s cubic-bezier(0.34, 1.45, 0.7, 1);
+    transform-style: preserve-3d;
+    position: relative; }
+    .rotating-card-container .card .back,
+    .rotating-card-container .card .front {
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      position: absolute;
+      background-color: #fff;
+      border-radius: 0.5rem;
+      top: 0;
+      left: 0;
+      justify-content: center;
+      align-content: center;
+      display: -moz-flex;
+      display: -o-flex;
+      display: flex;
+      -moz-flex-direction: column;
+      -o-flex-direction: column;
+      flex-direction: column; }
+      .rotating-card-container .card .back .card-body,
+      .rotating-card-container .card .front .card-body {
+        justify-content: center;
+        align-content: center;
+        display: -moz-flex;
+        display: -o-flex;
+        display: flex;
+        -moz-flex-direction: column;
+        -o-flex-direction: column;
+        flex-direction: column; }
+      .rotating-card-container .card .back:after,
+      .rotating-card-container .card .front:after {
+        position: absolute;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        display: block;
+        left: 0;
+        top: 0;
+        content: "";
+        border-radius: 0.5rem;
+        background-image: linear-gradient(195deg, #EC407A, #D81B60);
+        opacity: .85; }
+    .rotating-card-container .card .front {
+      z-index: 2;
+      position: relative; }
+    .rotating-card-container .card .back {
+      transform: rotateY(180deg);
+      z-index: 5;
+      text-align: center;
+      width: 100%;
+      height: 100%; }
+      .rotating-card-container .card .back.back-background .card-body {
+        position: relative;
+        z-index: 2; }
+      .rotating-card-container .card .back .card-footer .btn {
+        margin: 0; }
+      .rotating-card-container .card .back .card-body {
+        padding-left: 15px;
+        padding-right: 15px; }
+  .rotating-card-container:not(.manual-flip):hover .card {
+    transform: rotateY(180deg); }
+  .rotating-card-container.hover.manual-flip .card {
+    transform: rotateY(180deg); }
+  .card-profile .rotating-card-container .front {
+    text-align: left; }
+
+.back-background .card-body {
+  min-height: auto;
+  padding-top: 15px;
+  padding-bottom: 15px; }
+
+/*       Fix bug for IE      */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .rotating-card-container .card .back,
+  .rotating-card-container .card .front {
+    -webkit-backface-visibility: visible;
+            backface-visibility: visible; }
+  .rotating-card-container .card .back {
+    visibility: hidden;
+    transition: visibility 0.3s cubic-bezier(0.34, 1.45, 0.7, 1); }
+  .rotating-card-container .card .front {
+    z-index: 4; }
+  .rotating-card-container.manual-flip.hover .card .back,
+  .rotating-card-container:not(.manual-flip):hover .card .back {
+    z-index: 5;
+    visibility: visible; } }
+
+
+
+    .material-icons {
+  font-family: 'Material Icons Round';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 20px;
+  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+  /* Support for IE. */
+  font-feature-settings: 'liga'; }
+
+.nav.nav-pills .nav-link .material-icons {
+  top: 3px; }
+</style>
+    <section class="my-5 py-5">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-4 ms-auto me-auto p-lg-4 mt-lg-0 mt-4">
+              <div class="rotating-card-container">
+                <div class="card card-rotate card-background card-background-mask-primary shadow-primary mt-md-0 mt-5">
+                  <div class="front front-background" style="background-image: url(https://images.unsplash.com/photo-1569683795645-b62e50fbf103?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80); background-size: cover;">
+                    <div class="card-body py-7 text-center">
+                      <i class="material-icons text-white text-4xl my-3">touch_app</i>
+                      <h3 class="text-primary">Feel the <br /> Material Kit</h3>
+                      <p class="text-white opacity-8">All the Bootstrap components that you need in a development have been re-design with the new look.</p>
+                    </div>
+                  </div>
+                  <div class="back back-background" style="background-image: url(https://images.unsplash.com/photo-1498889444388-e67ea62c464b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1365&q=80); background-size: cover;">
+                    <div class="card-body pt-7 text-center">
+                      <h3 class="text-white">Discover More</h3>
+                      <p class="text-white opacity-8"> You will save a lot of time going from prototyping to full-functional code because all elements are implemented.</p>
+                      <a href="{% url 'info' %}" class="btn btn-white btn-sm w-50 mx-auto mt-3">INFO</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 ms-auto">
+              <div class="row justify-content-start">
+                <div class="col-md-6">
+                  <div class="info">
+                    <i class="material-icons text-gradient text-primary text-3xl">content_copy</i>
+                    <h5 class="font-weight-bolder mt-3">Full Documentation</h5>
+                    <p class="pe-5">Built by developers for developers. Check the foundation and you will find everything inside our documentation.</p>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="info">
+                    <i class="material-icons text-gradient text-primary text-3xl">flip_to_front</i>
+                    <h5 class="font-weight-bolder mt-3">Bootstrap 5 Ready</h5>
+                    <p class="pe-3">The world’s most popular front-end open source toolkit, featuring Sass variables and mixins.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="row justify-content-start mt-5">
+                <div class="col-md-6 mt-3">
+                  <i class="material-icons text-gradient text-primary text-3xl">price_change</i>
+                  <h5 class="font-weight-bolder mt-3">Save Time & Money</h5>
+                  <p class="pe-5">Creating your design from scratch with dedicated designers can be very expensive. Start with our Design System.</p>
+                </div>
+                <div class="col-md-6 mt-3">
+                  <div class="info">
+                    <i class="material-icons text-gradient text-primary text-3xl">devices</i>
+                    <h5 class="font-weight-bolder mt-3">Fully Responsive</h5>
+                    <p class="pe-3">Regardless of the screen size, the website content will naturally fit the given resolution.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+{% endblock content %}
